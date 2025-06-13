@@ -1,0 +1,653 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 15, 32, 39;
+  --background-end-rgb: 125, 211, 252;
+}
+
+@layer base {
+  :root {
+    --background: 240 100% 99%;
+    --foreground: 210 40% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 40% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 40% 15%;
+    --primary: 188 95% 52%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 188 25% 95%;
+    --secondary-foreground: 210 40% 15%;
+    --muted: 188 25% 95%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 188 95% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 188 30% 85%;
+    --input: 188 30% 90%;
+    --ring: 188 95% 52%;
+    --chart-1: 188 95% 52%;
+    --chart-2: 188 85% 45%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply min-h-screen;
+    background:
+      radial-gradient(circle 400px at 20% 80%, rgba(34, 238, 204, 0.3) 0%, transparent 70%),
+      radial-gradient(circle 350px at 80% 20%, rgba(125, 233, 252, 0.25) 0%, transparent 70%),
+      radial-gradient(circle 500px at 50% 50%, rgba(34, 211, 238, 0.2) 0%, transparent 80%),
+      radial-gradient(circle 300px at 90% 70%, rgba(165, 243, 252, 0.15) 0%, transparent 70%),
+      radial-gradient(circle 450px at 10% 30%, rgba(34, 190, 238, 0.25) 0%, transparent 75%),
+      radial-gradient(circle 250px at 60% 10%, rgba(125, 211, 252, 0.18) 0%, transparent 65%),
+      linear-gradient(135deg, #0F2027 0%, #203A43 30%, #2C5364 60%, #07424d 85%, #397c8d 100%);
+    color: #FFFFFF; /* Default to white text for dark gradient background */
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', 'Open Sans', Arial, sans-serif;
+  }
+}
+
+@layer components {
+  /* Netcare Teal Theme Components - Elegant Glass Morphism */
+  /* Use higher specificity to override shadcn/ui defaults */
+  div.netcare-card,
+  .netcare-card.rounded-lg,
+  .netcare-card[class*="bg-"] {
+    background: rgba(15, 32, 39, 0.6) !important; /* Dark teal with transparency for elegance */
+    border: 1px solid rgba(34, 211, 238, 0.15) !important; /* Subtle cyan border */
+    backdrop-filter: blur(12px) !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.5s ease !important;
+  }
+
+  div.netcare-card:hover,
+  .netcare-card.rounded-lg:hover,
+  .netcare-card[class*="bg-"]:hover {
+    background: rgba(15, 32, 39, 0.7) !important; /* Slightly more opaque on hover */
+    border-color: rgba(30, 181, 207, 0.25) !important; /* Subtle border glow */
+    box-shadow: 0 20px 40px rgba(34, 211, 238, 0.1) !important; /* Elegant glow */
+  }
+
+  /* Ensure text is white and readable on dark glass cards */
+  .netcare-card h1,
+  .netcare-card h2,
+  .netcare-card h3,
+  .netcare-card h4,
+  .netcare-card h5,
+  .netcare-card h6,
+  .netcare-card p,
+  .netcare-card span,
+  .netcare-card .text-netcare-white,
+  .netcare-card .text-netcare-white\/80,
+  .netcare-card .text-netcare-white\/70,
+  .netcare-card .text-netcare-white\/60 {
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Specific opacity variations for glass cards */
+  .netcare-card .text-netcare-white\/80 {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .netcare-card .text-netcare-white\/70 {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .netcare-card .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  /* Preserve cyan accent colors on glass cards */
+  .netcare-card .text-netcare-cyan {
+    color: #36a2aa !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .netcare-card .text-netcare-light-cyan {
+    color: #7ddefc !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .netcare-card .text-netcare-silver {
+    color: #94A3B8 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ensure all card content text is visible - more specific selectors */
+  .netcare-card [class*="text-"]:not([class*="text-netcare-cyan"]):not([class*="text-netcare-light-cyan"]):not([class*="text-netcare-silver"]),
+  .netcare-card .font-medium,
+  .netcare-card .font-semibold,
+  .netcare-card .font-bold {
+    color: #FFFFFF !important;
+  }
+
+  /* Override any gray text that might appear */
+  .netcare-card .text-gray-500,
+  .netcare-card .text-gray-400,
+  .netcare-card .text-gray-300,
+  .netcare-card .text-slate-500,
+  .netcare-card .text-slate-400,
+  .netcare-card .text-muted-foreground {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* Force white text on card titles and content */
+  .netcare-card .card-title,
+  .netcare-card .card-description,
+  .netcare-card .card-content p,
+  .netcare-card .card-content span {
+    color: #FFFFFF !important;
+  }
+
+  /* Target specific text elements that might have default colors */
+  .netcare-card .text-sm,
+  .netcare-card .text-base,
+  .netcare-card .text-lg,
+  .netcare-card .text-xl,
+  .netcare-card .text-2xl,
+  .netcare-card .text-3xl {
+    color: #FFFFFF !important;
+  }
+
+  /* Override shadcn/ui default background and text colors */
+  .netcare-card.bg-card,
+  .netcare-card .bg-card {
+    background: rgba(15, 32, 39, 0.6) !important;
+  }
+
+  .netcare-card .text-foreground,
+  .netcare-card .text-muted-foreground,
+  .netcare-card .text-card-foreground,
+  .netcare-card.text-card-foreground {
+    color: #FFFFFF !important;
+  }
+
+  /* Override shadcn/ui CSS variables for netcare cards */
+  div.netcare-card,
+  .netcare-card.rounded-lg {
+    --card: 15 32 39; /* Dark teal background */
+    --card-foreground: 255 255 255; /* White text */
+    --muted-foreground: 255 255 255; /* White text for muted */
+    --foreground: 255 255 255; /* White text */
+    --background: 15 32 39; /* Dark background */
+  }
+
+  /* Ensure cards have dark background - override any conflicting styles */
+  .netcare-card,
+  [class*="netcare-card"] {
+    background: rgba(15, 32, 39, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(34, 211, 238, 0.15) !important;
+  }
+
+  /* Force dark background on all netcare cards regardless of other classes */
+  .netcare-card[class*="bg-"],
+  .netcare-card.bg-card,
+  .netcare-card.bg-white,
+  .netcare-card.bg-background {
+    background: rgba(15, 32, 39, 0.6) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(34, 211, 238, 0.15) !important;
+  }
+
+  /* Smart text color - white on dark backgrounds, dark on light backgrounds */
+  .netcare-card * {
+    color: #FFFFFF !important;
+  }
+
+  /* But if somehow the background is light, make text dark */
+  .netcare-card[style*="background: rgb(255"],
+  .netcare-card[style*="background-color: rgb(255"],
+  .netcare-card.bg-white,
+  .netcare-card.bg-gray-50,
+  .netcare-card.bg-slate-50 {
+    background: rgba(15, 32, 39, 0.6) !important;
+  }
+
+  .netcare-card[style*="background: rgb(255"] *,
+  .netcare-card[style*="background-color: rgb(255"] *,
+  .netcare-card.bg-white *,
+  .netcare-card.bg-gray-50 *,
+  .netcare-card.bg-slate-50 * {
+    color: #FFFFFF !important;
+  }
+
+  /* Enhanced glass morphism for stats cards */
+  .netcare-card.group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 50px rgba(34, 211, 238, 0.12);
+  }
+
+  /* Subtle animation for card elements */
+  .netcare-card .group-hover\:translate-x-1:hover {
+    transform: translateX(0.25rem);
+  }
+
+  /* Removed conflicting rules that were making text dark on glass cards */
+
+  /* Cards on gradient backgrounds should maintain white text with proper contrast */
+  .bg-netcare-gradient .netcare-card .text-netcare-white {
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .netcare-card .text-netcare-white\/80 {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .netcare-card .text-netcare-white\/70 {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .netcare-card .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .netcare-card .text-netcare-white\/50 {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .netcare-button {
+    @apply bg-netcare-button-gradient hover:bg-netcare-button-primary-hover text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105;
+    background: linear-gradient(135deg, #0891B2 0%, #0E7490 100%);
+  }
+
+  .netcare-input {
+    @apply border border-netcare-border-light rounded-xl px-4 py-2 placeholder-netcare-text-muted focus:border-netcare-border-accent focus:ring-2 focus:ring-netcare-border-accent/20 transition-all duration-200;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white to show circles behind */
+    color: #0F172A; /* netcare-text-primary color directly */
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-netcare-button-primary to-netcare-button-secondary bg-clip-text text-transparent;
+  }
+
+  .netcare-hero-section {
+    @apply bg-netcare-hero-gradient;
+  }
+
+  .netcare-section {
+    @apply bg-netcare-bg-light;
+  }
+
+  /* Circle fade effect utility */
+  .netcare-circles {
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(125, 211, 252, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 90% 70%, rgba(165, 243, 252, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 10% 30%, rgba(34, 211, 238, 0.12) 0%, transparent 50%);
+  }
+
+  /* Enhanced gradient with circles */
+  .bg-netcare-gradient-enhanced {
+    background-image:
+      radial-gradient(circle at 25% 75%, rgba(34, 211, 238, 0.2) 0%, transparent 60%),
+      radial-gradient(circle at 75% 25%, rgba(125, 211, 252, 0.15) 0%, transparent 60%),
+      radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.1) 0%, transparent 70%),
+      radial-gradient(circle at 85% 65%, rgba(165, 243, 252, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 15% 35%, rgba(34, 211, 238, 0.18) 0%, transparent 55%),
+      radial-gradient(circle at 60% 80%, rgba(125, 211, 252, 0.12) 0%, transparent 50%),
+      linear-gradient(135deg, #0F2027 0%, #203A43 25%, #2C5364 50%, #4A90A4 75%, #529499 100%);
+  }
+
+  /* Static circle overlay for specific elements */
+  .netcare-circle-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 30% 70%, rgba(34, 211, 238, 0.1) 0%, transparent 40%),
+      radial-gradient(circle at 70% 30%, rgba(125, 211, 252, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .netcare-circle-overlay {
+    position: relative;
+  }
+
+  .netcare-circle-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Header styling */
+  .netcare-header {
+    @apply bg-netcare-dark-teal/95 backdrop-blur-md border-b border-netcare-cyan/30 shadow-xl;
+  }
+
+  /* Header text should be white on dark backgrounds */
+  header .text-netcare-white,
+  .bg-netcare-navy .text-netcare-white,
+  .bg-netcare-navy\/95 .text-netcare-white,
+  .bg-netcare-dark-teal .text-netcare-white {
+    color: #FFFFFF !important;
+  }
+
+  header .text-netcare-white\/80,
+  .bg-netcare-navy .text-netcare-white\/80,
+  .bg-netcare-navy\/95 .text-netcare-white\/80,
+  .bg-netcare-dark-teal .text-netcare-white\/80 {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  header .text-netcare-white\/70,
+  .bg-netcare-navy .text-netcare-white\/70,
+  .bg-netcare-navy\/95 .text-netcare-white\/70,
+  .bg-netcare-dark-teal .text-netcare-white\/70 {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  header .text-netcare-white\/60,
+  .bg-netcare-navy .text-netcare-white\/60,
+  .bg-netcare-navy\/95 .text-netcare-white\/60,
+  .bg-netcare-dark-teal .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  /* Text color utilities */
+  .text-netcare-primary {
+    color: #0F172A;
+  }
+
+  .text-netcare-secondary {
+    color: #475569;
+  }
+
+  .text-netcare-muted {
+    color: #64748B;
+  }
+
+  .text-netcare-white {
+    color: #FFFFFF;
+  }
+
+  .text-netcare-cyan {
+    color: #208083;
+  }
+
+  /* Text on gradient backgrounds - use white with shadow for visibility */
+  .bg-netcare-gradient .text-netcare-white {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .text-netcare-white\/80 {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .text-netcare-white\/70 {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .bg-netcare-gradient .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Default white text for gradient backgrounds */
+  .text-netcare-white {
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .text-netcare-white\/80 {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-netcare-white\/70 {
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-netcare-white\/50 {
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Status indicators */
+  .status-approved {
+    @apply bg-netcare-success/10 text-netcare-success border border-netcare-success/20;
+  }
+
+  .status-pending {
+    @apply bg-netcare-warning/10 text-netcare-warning border border-netcare-warning/20;
+  }
+
+  .status-rejected {
+    @apply bg-netcare-error/10 text-netcare-error border border-netcare-error/20;
+  }
+
+  .status-processing {
+    @apply bg-netcare-info/10 text-netcare-info border border-netcare-info/20;
+  }
+
+  /* Hover states */
+  .hover\:text-netcare-cyan:hover {
+    color: #06B6D4;
+  }
+
+  .hover\:bg-netcare-cyan:hover {
+    background-color: #22D3EE;
+  }
+
+  /* Background utilities */
+  .bg-netcare-navy {
+    background-color: #1B4B5A;
+  }
+
+  .bg-netcare-navy\/95 {
+    background-color: rgba(27, 75, 90, 0.95);
+  }
+
+  .bg-netcare-gold {
+    background-color: #22D3EE;
+  }
+
+  .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .bg-white\/15 {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Gold gradient background */
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%);
+  }
+
+  /* Border utilities */
+  .border-netcare-gold {
+    border-color: #22D3EE;
+  }
+
+  .border-netcare-gold\/30 {
+    border-color: rgba(34, 211, 238, 0.3);
+  }
+
+  .border-netcare-gold\/20 {
+    border-color: rgba(34, 211, 238, 0.2);
+  }
+
+  /* Text color mappings for compatibility */
+  .text-cyan-400 {
+    color: #22D3EE;
+  }
+
+  .text-cyan-300 {
+    color: #67E8F9;
+  }
+
+  /* Footer text styling */
+  footer .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.6) !important;
+  }
+
+  /* Gradient text on dark backgrounds should be visible */
+  .bg-netcare-gradient .text-gradient {
+    background: linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Gold/cyan text colors with better visibility */
+  .bg-netcare-gradient .text-netcare-gold {
+    color: #22D3EE !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Border and text colors for outline elements */
+  .bg-netcare-gradient .border-netcare-gold {
+    border-color: #22D3EE !important;
+  }
+
+  .bg-netcare-gradient .text-netcare-gold {
+    color: #22D3EE !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Ensure buttons have proper contrast */
+  .bg-netcare-gradient .netcare-button {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Upload zone text should be clearly visible on gradient backgrounds */
+  .bg-netcare-gradient .border-dashed .text-netcare-white {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-weight: 600;
+  }
+
+  .bg-netcare-gradient .border-dashed .text-netcare-white\/60 {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  .bg-netcare-gradient .border-dashed .text-netcare-white\/50 {
+    color: rgba(255, 255, 255, 0.75) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Badge styling on gradient */
+  .bg-netcare-gradient .bg-netcare-gold\/20 {
+    background-color: rgba(34, 211, 238, 0.2) !important;
+  }
+
+  .bg-netcare-gradient .border-netcare-gold\/30 {
+    border-color: rgba(2, 103, 119, 0.3) !important;
+  }
+
+  /* Professional healthcare styling */
+  .healthcare-professional {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+
+  .healthcare-card-hover {
+    @apply hover:scale-102 hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Floating circles animation */
+  .animate-float-circles {
+    animation: floatCircles 20s ease-in-out infinite;
+  }
+
+  @keyframes floatCircles {
+    0%, 100% {
+      background-position: 20% 80%, 80% 20%, 40% 40%, 90% 70%, 10% 30%;
+    }
+    25% {
+      background-position: 25% 75%, 75% 25%, 45% 35%, 85% 75%, 15% 25%;
+    }
+    50% {
+      background-position: 30% 70%, 70% 30%, 50% 30%, 80% 80%, 20% 20%;
+    }
+    75% {
+      background-position: 15% 85%, 85% 15%, 35% 45%, 95% 65%, 5% 35%;
+    }
+  }
+
+  /* Shadow utilities */
+  .shadow-netcare {
+    box-shadow: 0 4px 6px -1px rgba(34, 211, 238, 0.1), 0 2px 4px -1px rgba(34, 211, 238, 0.06);
+  }
+
+  .shadow-netcare-lg {
+    box-shadow: 0 10px 15px -3px rgba(34, 211, 238, 0.1), 0 4px 6px -2px rgba(34, 211, 238, 0.05);
+  }
+
+  .shadow-netcare-xl {
+    box-shadow: 0 20px 25px -5px rgba(34, 211, 238, 0.1), 0 10px 10px -5px rgba(34, 211, 238, 0.04);
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(224, 247, 250, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #22D3EE;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #002c3d;
+}
+
+/* Smooth scale utilities */
+.scale-102 {
+  transform: scale(1.02);
+}
