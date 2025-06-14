@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import Image from 'next/image';
 
 export default function ClaimSubmittedPage() {
   const router = useRouter();
@@ -59,18 +59,20 @@ export default function ClaimSubmittedPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-[#D0E9F3] to-[#B0D3E0]">
       {/* Header */}
       <header className="bg-netcare-navy/95 backdrop-blur-md border-b border-netcare-gold/30 shadow-xl">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-netcare-gold to-netcare-light-gold rounded-xl flex items-center justify-center shadow-lg">
-                  <div className="w-7 h-7 bg-netcare-navy rounded-lg flex items-center justify-center">
-                    <div className="w-3 h-3 bg-netcare-gold rounded-sm"></div>
-                  </div>
-                </div>
+                <Image
+                  src="/assets/images/netcarelogo.png"
+                  alt="Netcare Logo"
+                  width={64}
+                  height={64}
+                  className="object-contain"
+                />
                 <div>
                   <h1 className="text-2xl font-bold text-netcare-white tracking-tight">NETCARE</h1>
                   <p className="text-sm text-netcare-gold font-medium">plus</p>
@@ -86,7 +88,7 @@ export default function ClaimSubmittedPage() {
                   <Plus className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>New Claim</span>
                 </Link>
-                <Link href="#" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
+                <Link href="/support" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
                   <HelpCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>Support</span>
                 </Link>
@@ -100,7 +102,6 @@ export default function ClaimSubmittedPage() {
                 </div>
                 <span className="text-netcare-white font-semibold">SJagjivan</span>
               </div>
-              <ThemeToggle />
               <Button variant="ghost" size="sm" className="text-netcare-white/80 hover:text-netcare-gold hover:bg-netcare-gold/10 transition-all duration-300">
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
@@ -116,7 +117,7 @@ export default function ClaimSubmittedPage() {
         <div className="mb-8">
           <Link 
             href="/dashboard" 
-            className="inline-flex items-center text-netcare-white/70 hover:text-netcare-gold transition-colors group"
+            className="inline-flex items-center text-[#1D3443] hover:text-[#3DA9D1] transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Claims Summary
@@ -126,12 +127,12 @@ export default function ClaimSubmittedPage() {
         {/* Success Message */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center">
-              <CheckCircle className="w-12 h-12 text-green-400" />
+            <div className="w-20 h-20 bg-[#3DA9D1]/20 rounded-full flex items-center justify-center">
+              <CheckCircle className="w-12 h-12 text-[#3DA9D1]" />
             </div>
           </div>
-          <h2 className="text-4xl font-bold text-netcare-white mb-4">Claim Successfully Submitted!</h2>
-          <p className="text-netcare-white/70 text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-[#1D3443] mb-4">Claim Successfully Submitted!</h2>
+          <p className="text-[#1D3443]/70 text-lg max-w-2xl mx-auto">
             Your claim has been submitted and is now being processed. You'll receive updates on the status of your claim.
           </p>
         </div>
@@ -141,22 +142,22 @@ export default function ClaimSubmittedPage() {
           {/* Left Column - Claim Summary */}
           <div className="lg:col-span-2 space-y-8">
             {/* Claim Header */}
-            <Card className="netcare-card border-netcare-gold/30">
+            <Card className="bg-white border-[#D3B380]/30 shadow-lg">
               <CardContent className="p-8">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                   <div className="flex items-center gap-4">
-                    <div className="p-3 bg-cyan-400/20 rounded-xl">
-                      <FileText className="w-8 h-8 text-cyan-400" />
+                    <div className="p-3 bg-[#3DA9D1]/20 rounded-xl">
+                      <FileText className="w-8 h-8 text-[#3DA9D1]" />
                     </div>
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-3xl font-bold text-netcare-white">{claimData.title}</h3>
-                        <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-400/40 shadow-cyan-500/20 font-medium px-3 py-1">
+                        <h3 className="text-3xl font-bold text-[#1D3443]">{claimData.title}</h3>
+                        <Badge className="bg-[#3DA9D1]/20 text-[#1D3443] border-[#3DA9D1]/40 shadow-[#3DA9D1]/20 font-medium px-3 py-1">
                           <Clock className="w-4 h-4 mr-2" />
                           {claimData.status}
                         </Badge>
                       </div>
-                      <p className="text-netcare-white/70 text-lg">
+                      <p className="text-[#1D3443]/70 text-lg">
                         {claimData.type} • Submitted on {claimData.submittedDate}
                       </p>
                     </div>
@@ -165,13 +166,13 @@ export default function ClaimSubmittedPage() {
                   <div className="flex gap-3">
                     <Button 
                       variant="outline" 
-                      className="border-netcare-gold/50 text-netcare-white hover:bg-netcare-gold/10 hover:border-netcare-gold"
+                      className="border-[#D3B380] text-[#1D3443] hover:bg-[#D3B380]/10 hover:border-[#D3B380]"
                       onClick={handleViewClaim}
                     >
                       <Eye className="w-4 h-4 mr-2" />
                       View
                     </Button>
-                    <Button className="netcare-button">
+                    <Button className="bg-[#1D3443] text-white hover:bg-[#1D3443]/90">
                       <Download className="w-4 h-4 mr-2" />
                       Download
                     </Button>
@@ -181,61 +182,61 @@ export default function ClaimSubmittedPage() {
             </Card>
 
             {/* Claim Summary Details */}
-            <Card className="netcare-card border-netcare-gold/30">
+            <Card className="bg-white border-[#D3B380]/30 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-netcare-white text-xl">Claim Summary</CardTitle>
+                <CardTitle className="text-[#1D3443] text-xl">Claim Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <Building className="w-4 h-4 text-netcare-white/60" />
-                        <p className="text-netcare-white/60 text-sm font-medium">Policy Number</p>
+                        <Building className="w-4 h-4 text-[#1D3443]/60" />
+                        <p className="text-[#1D3443]/60 text-sm font-medium">Policy Number</p>
                       </div>
-                      <p className="text-netcare-white font-semibold text-lg">{claimData.summary.policyNumber}</p>
+                      <p className="text-[#1D3443] font-semibold text-lg">{claimData.summary.policyNumber}</p>
                     </div>
                     
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <Building className="w-4 h-4 text-netcare-white/60" />
-                        <p className="text-netcare-white/60 text-sm font-medium">Medical Aid Scheme</p>
+                        <Building className="w-4 h-4 text-[#1D3443]/60" />
+                        <p className="text-[#1D3443]/60 text-sm font-medium">Medical Aid Scheme</p>
                       </div>
-                      <p className="text-netcare-white font-semibold text-lg">{claimData.summary.medicalAidScheme}</p>
+                      <p className="text-[#1D3443] font-semibold text-lg">{claimData.summary.medicalAidScheme}</p>
                     </div>
                     
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <Info className="w-4 h-4 text-netcare-white/60" />
-                        <p className="text-netcare-white/60 text-sm font-medium">Reasons for Non-Payment</p>
+                        <Info className="w-4 h-4 text-[#1D3443]/60" />
+                        <p className="text-[#1D3443]/60 text-sm font-medium">Reasons for Non-Payment</p>
                       </div>
-                      <p className="text-netcare-white font-semibold text-lg">{claimData.summary.reasonForNonPayment}</p>
+                      <p className="text-[#1D3443] font-semibold text-lg">{claimData.summary.reasonForNonPayment}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <User className="w-4 h-4 text-netcare-white/60" />
-                        <p className="text-netcare-white/60 text-sm font-medium">Patient Name</p>
+                        <User className="w-4 h-4 text-[#1D3443]/60" />
+                        <p className="text-[#1D3443]/60 text-sm font-medium">Patient Name</p>
                       </div>
-                      <p className="text-netcare-white font-semibold text-lg">{claimData.summary.patientName}</p>
+                      <p className="text-[#1D3443] font-semibold text-lg">{claimData.summary.patientName}</p>
                     </div>
                     
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <DollarSign className="w-4 h-4 text-netcare-white/60" />
-                        <p className="text-netcare-white/60 text-sm font-medium">Amount Paid</p>
+                        <DollarSign className="w-4 h-4 text-[#1D3443]/60" />
+                        <p className="text-[#1D3443]/60 text-sm font-medium">Amount Paid</p>
                       </div>
-                      <p className="text-cyan-400 font-bold text-xl">{claimData.summary.amountPaid}</p>
+                      <p className="text-[#3DA9D1] font-bold text-xl">{claimData.summary.amountPaid}</p>
                     </div>
                     
                     <div>
                       <div className="flex items-center gap-2 mb-2">
-                        <DollarSign className="w-4 h-4 text-netcare-white/60" />
-                        <p className="text-netcare-white/60 text-sm font-medium">Amount Unpaid</p>
+                        <DollarSign className="w-4 h-4 text-[#1D3443]/60" />
+                        <p className="text-[#1D3443]/60 text-sm font-medium">Amount Unpaid</p>
                       </div>
-                      <p className="text-orange-400 font-bold text-xl">{claimData.summary.amountUnpaid}</p>
+                      <p className="text-[#1D3443] font-bold text-xl">{claimData.summary.amountUnpaid}</p>
                     </div>
                   </div>
                 </div>
@@ -245,9 +246,9 @@ export default function ClaimSubmittedPage() {
 
           {/* Right Column - Claim History & Actions */}
           <div className="space-y-8">
-            <Card className="netcare-card border-netcare-gold/30">
+            <Card className="bg-white border-[#D3B380]/30 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-netcare-white text-xl">Claim History</CardTitle>
+                <CardTitle className="text-[#1D3443] text-xl">Claim History</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4">
@@ -260,7 +261,7 @@ export default function ClaimSubmittedPage() {
                         <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
                         <p className="font-semibold text-cyan-400">Submitted</p>
                       </div>
-                      <p className="text-netcare-white/60 text-sm">
+                      <p className="text-[#1D3443]/60 text-sm">
                         {claimData.submittedDate} {claimData.submittedTime}
                       </p>
                     </div>
@@ -270,12 +271,12 @@ export default function ClaimSubmittedPage() {
             </Card>
 
             {/* Action Buttons */}
-            <Card className="netcare-card border-netcare-gold/30">
+            <Card className="bg-white border-[#D3B380]/30 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-netcare-white text-xl">What's Next?</CardTitle>
+                <CardTitle className="text-[#1D3443] text-xl">What's Next?</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-netcare-white/70 text-sm mb-6">
+                <p className="text-[#1D3443]/70 text-sm mb-6">
                   Your claim is now being processed. You can track its progress or submit a new claim.
                 </p>
                 
@@ -310,21 +311,21 @@ export default function ClaimSubmittedPage() {
             </Card>
 
             {/* Help Section */}
-            <Card className="netcare-card border-netcare-gold/30">
+            <Card className="bg-white border-[#D3B380]/30 shadow-lg">
               <CardContent className="p-6 text-center">
                 <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-netcare-gold/20 rounded-xl">
-                    <HelpCircle className="w-6 h-6 text-cyan-400" />
+                  <div className="p-3 bg-[#3DA9D1]/20 rounded-xl">
+                    <HelpCircle className="w-6 h-6 text-[#3DA9D1]" />
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-netcare-white mb-3">Need Help?</h3>
-                <p className="text-netcare-white/70 text-sm mb-4">
+                <h3 className="text-lg font-bold text-[#1D3443] mb-3">Need Help?</h3>
+                <p className="text-[#1D3443]/70 text-sm mb-4">
                   If you have questions about your claim or need assistance, our support team is here to help.
                 </p>
                 <Button 
                   variant="outline" 
                   size="sm"
-                  className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900"
+                  className="border-[#D3B380] text-[#1D3443] hover:bg-[#D3B380]/10 hover:border-[#D3B380]"
                 >
                   Contact Support
                 </Button>
@@ -335,14 +336,14 @@ export default function ClaimSubmittedPage() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-netcare-navy/50 border-t border-netcare-gold/20 py-8 mt-16">
+      <footer className="bg-netcare-navy/95 backdrop-blur-md border-t border-netcare-gold/30 shadow-xl py-8 mt-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-netcare-white/60 text-sm">
               © 2025 ClaimsPro. All rights reserved.
             </p>
             <div className="flex flex-wrap gap-6 text-netcare-white/60">
-              <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Support</Link>
+              <Link href="/support" className="hover:text-netcare-gold transition-colors text-sm">Support</Link>
               <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Privacy Policy</Link>
               <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Terms of Service</Link>
             </div>

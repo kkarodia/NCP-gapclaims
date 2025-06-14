@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import Image from 'next/image';
 
 interface UploadedFile {
   id: string;
@@ -108,18 +108,18 @@ export default function UploadDocumentsPage() {
   }) => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-2xl font-bold text-netcare-white mb-2">{title}</h3>
-        <p className="text-netcare-white/70">{description}</p>
+        <h3 className="text-2xl font-bold text-[#1D3443] mb-2">{title}</h3>
+        <p className="text-[#1D3443]/70">{description}</p>
       </div>
 
       <div className="space-y-4">
-        <h4 className="text-lg font-semibold text-netcare-white">Upload Document</h4>
+        <h4 className="text-lg font-semibold text-[#1D3443]">Upload Document</h4>
         
         <div
-          className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer ${
+          className={`border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer bg-white ${
             isDragging === type
-              ? 'border-cyan-400 bg-cyan-400/10'
-              : 'border-netcare-gold/40 hover:border-cyan-400/60 hover:bg-cyan-400/5'
+              ? 'border-[#3DA9D1] bg-[#3DA9D1]/5'
+              : 'border-[#D3B380]/50 hover:border-[#3DA9D1] hover:bg-[#3DA9D1]/5'
           }`}
           onDragOver={(e) => handleDragOver(e, type)}
           onDragLeave={handleDragLeave}
@@ -128,20 +128,20 @@ export default function UploadDocumentsPage() {
         >
           <div className="flex flex-col items-center space-y-4">
             <div className={`p-4 rounded-full transition-colors ${
-              isDragging === type ? 'bg-cyan-400/20' : 'bg-netcare-gold/20'
+              isDragging === type ? 'bg-[#3DA9D1]/20' : 'bg-[#D3B380]/20'
             }`}>
               <Upload className={`w-8 h-8 ${
-                isDragging === type ? 'text-cyan-400' : 'text-cyan-400'
+                isDragging === type ? 'text-[#3DA9D1]' : 'text-[#1D3443]'
               }`} />
             </div>
             <div>
-              <p className="text-lg font-semibold text-netcare-white mb-2">
+              <p className="text-lg font-semibold text-[#1D3443] mb-2">
                 Drag and drop your file here
               </p>
-              <p className="text-netcare-white/60 mb-4">
+              <p className="text-[#1D3443]/70 mb-4">
                 or Browse from your computer
               </p>
-              <p className="text-sm text-netcare-white/50">
+              <p className="text-sm text-[#1D3443]/50">
                 PDF, JPG, or PNG up to 5MB
               </p>
             </div>
@@ -160,26 +160,26 @@ export default function UploadDocumentsPage() {
         {/* Uploaded Files */}
         {files.length > 0 && (
           <div className="space-y-3">
-            <h5 className="font-semibold text-netcare-white">Uploaded Files:</h5>
+            <h5 className="font-semibold text-[#1D3443]">Uploaded Files:</h5>
             {files.map((file) => (
               <div
                 key={file.id}
-                className="flex items-center justify-between p-4 bg-white/10 rounded-lg border border-netcare-gold/20"
+                className="flex items-center justify-between p-4 bg-white rounded-lg border border-[#D3B380]/30 shadow-sm"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="p-2 bg-cyan-400/20 rounded-lg">
-                    <File className="w-5 h-5 text-cyan-400" />
+                  <div className="p-2 bg-[#3DA9D1]/20 rounded-lg">
+                    <File className="w-5 h-5 text-[#3DA9D1]" />
                   </div>
                   <div>
-                    <p className="font-medium text-netcare-white">{file.name}</p>
-                    <p className="text-sm text-netcare-white/60">{formatFileSize(file.size)}</p>
+                    <p className="font-medium text-[#1D3443]">{file.name}</p>
+                    <p className="text-sm text-[#1D3443]/60">{formatFileSize(file.size)}</p>
                   </div>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => removeFile(file.id, type)}
-                  className="text-netcare-white/60 hover:text-red-400 hover:bg-red-400/10"
+                  className="text-[#1D3443]/60 hover:text-red-600 hover:bg-red-50"
                 >
                   <X className="w-4 h-4" />
                 </Button>
@@ -192,18 +192,20 @@ export default function UploadDocumentsPage() {
   );
 
   return (
-    <div className="min-h-screen bg-netcare-gradient">
+    <div className="min-h-screen bg-[#D0E9F3]">
       {/* Header */}
       <header className="bg-netcare-navy/95 backdrop-blur-md border-b border-netcare-gold/30 shadow-xl">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-netcare-gold to-netcare-light-gold rounded-xl flex items-center justify-center shadow-lg">
-                  <div className="w-7 h-7 bg-netcare-navy rounded-lg flex items-center justify-center">
-                    <div className="w-3 h-3 bg-netcare-gold rounded-sm"></div>
-                  </div>
-                </div>
+                <Image
+                  src="/assets/images/netcarelogo.png"
+                  alt="Netcare Logo"
+                  width={64}
+                  height={64}
+                  className="object-contain"
+                />
                 <div>
                   <h1 className="text-2xl font-bold text-netcare-white tracking-tight">NETCARE</h1>
                   <p className="text-sm text-netcare-gold font-medium">plus</p>
@@ -215,11 +217,11 @@ export default function UploadDocumentsPage() {
                   <FileText className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>My Claims</span>
                 </Link>
-                <Link href="/new-claim" className="flex items-center space-x-2 text-netcare-white hover:text-netcare-gold transition-all duration-300 font-medium group">
+                <Link href="/new-claim" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
                   <Plus className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>New Claim</span>
                 </Link>
-                <Link href="#" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
+                <Link href="/support" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
                   <HelpCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>Support</span>
                 </Link>
@@ -233,7 +235,6 @@ export default function UploadDocumentsPage() {
                 </div>
                 <span className="text-netcare-white font-semibold">SJagjivan</span>
               </div>
-              <ThemeToggle />
               <Button variant="ghost" size="sm" className="text-netcare-white/80 hover:text-netcare-gold hover:bg-netcare-gold/10 transition-all duration-300">
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
@@ -249,43 +250,41 @@ export default function UploadDocumentsPage() {
         <div className="mb-8">
           <Link 
             href="/new-claim" 
-            className="inline-flex items-center text-netcare-white/70 hover:text-netcare-gold transition-colors group"
+            className="inline-flex items-center text-[#1D3443] hover:text-[#3DA9D1] transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            Back to Claim Types
+            Back to Claim Options
           </Link>
         </div>
 
         {/* Page Header */}
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-netcare-white mb-4">Submit Required Statements</h2>
-          <p className="text-netcare-white/70 text-lg">
-            Upload your Medical Aid Statement and verify the extracted information
+          <h2 className="text-4xl font-bold text-[#1D3443] mb-4">Upload Documents</h2>
+          <p className="text-[#1D3443]/70 text-lg">
+            Please upload your medical aid statements and provider documents
           </p>
         </div>
 
         {/* Upload Sections */}
-        <div className="space-y-16">
-          {/* Medical Aid Statement Upload */}
-          <Card className="netcare-card border-netcare-gold/30">
+        <div className="space-y-12">
+          <Card className="bg-white shadow-lg border border-[#D3B380]/30">
             <CardContent className="p-8">
               <UploadZone
                 type="medical-aid"
-                title="Submit Medical Aid Statement"
-                description="Upload your Medical Aid Statement and verify the extracted information"
+                title="Medical Aid Statement"
+                description="Upload your medical aid statement showing the claim details and amounts"
                 files={medicalAidFiles}
                 inputRef={medicalAidInputRef}
               />
             </CardContent>
           </Card>
 
-          {/* Medical Provider Statement Upload */}
-          <Card className="netcare-card border-netcare-gold/30">
+          <Card className="bg-white shadow-lg border border-[#D3B380]/30">
             <CardContent className="p-8">
               <UploadZone
                 type="provider"
-                title="Submit Medical Provider Statement"
-                description="Upload your Medical Provider Statement and verify the extracted information"
+                title="Provider Documents"
+                description="Upload any supporting documents from your healthcare provider"
                 files={providerFiles}
                 inputRef={providerInputRef}
               />
@@ -293,47 +292,38 @@ export default function UploadDocumentsPage() {
           </Card>
         </div>
 
-        {/* Submit Button */}
-        <div className="flex justify-center mt-12">
-          <Button 
+        {/* Action Buttons */}
+        <div className="flex justify-end mt-8 space-x-4">
+          <Button
+            variant="outline"
+            onClick={() => router.back()}
+            className="border-[#D3B380] text-[#1D3443] hover:bg-[#D3B380]/10"
+          >
+            Cancel
+          </Button>
+          <Button
             onClick={handleSubmit}
             disabled={!canSubmit}
-            className={`px-12 py-4 text-lg font-semibold transition-all duration-300 ${
-              canSubmit 
-                ? 'netcare-button hover:shadow-2xl hover:scale-105' 
-                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+            className={`px-8 py-2 text-base font-semibold transition-all duration-300 ${
+              canSubmit
+                ? 'bg-[#1D3443] text-white hover:bg-[#1D3443]/90'
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
-            {canSubmit ? (
-              <>
-                <CheckCircle className="w-5 h-5 mr-2" />
-                Submit
-              </>
-            ) : (
-              'Submit'
-            )}
+            Continue to Review
           </Button>
         </div>
-
-        {/* Help Text */}
-        {!canSubmit && (
-          <div className="text-center mt-6">
-            <p className="text-netcare-white/60">
-              Please upload at least one document to continue
-            </p>
-          </div>
-        )}
       </div>
 
       {/* Footer */}
-      <footer className="bg-netcare-navy/50 border-t border-netcare-gold/20 py-8 mt-16">
+      <footer className="bg-netcare-navy/95 backdrop-blur-md border-t border-netcare-gold/30 shadow-xl py-8 mt-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-netcare-white/60 text-sm">
               © 2025 ClaimsPro. All rights reserved.
             </p>
             <div className="flex flex-wrap gap-6 text-netcare-white/60">
-              <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Support</Link>
+              <Link href="/support" className="hover:text-netcare-gold transition-colors text-sm">Support</Link>
               <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Privacy Policy</Link>
               <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Terms of Service</Link>
             </div>

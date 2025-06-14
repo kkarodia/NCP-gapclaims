@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import Image from 'next/image';
 
 export default function NewClaimPage() {
   const [selectedOption, setSelectedOption] = useState<'upload' | 'email' | null>(null);
@@ -39,11 +39,13 @@ export default function NewClaimPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-netcare-gold to-netcare-light-gold rounded-xl flex items-center justify-center shadow-lg">
-                  <div className="w-7 h-7 bg-netcare-navy rounded-lg flex items-center justify-center">
-                    <div className="w-3 h-3 bg-netcare-gold rounded-sm"></div>
-                  </div>
-                </div>
+                <Image
+                  src="/assets/images/netcarelogo.png"
+                  alt="Netcare Logo"
+                  width={64}
+                  height={64}
+                  className="object-contain"
+                />
                 <div>
                   <h1 className="text-2xl font-bold text-netcare-white tracking-tight">NETCARE</h1>
                   <p className="text-sm text-netcare-gold font-medium">plus</p>
@@ -59,7 +61,7 @@ export default function NewClaimPage() {
                   <Plus className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>New Claim</span>
                 </Link>
-                <Link href="#" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
+                <Link href="/support" className="flex items-center space-x-2 text-netcare-white/80 hover:text-netcare-gold transition-all duration-300 font-medium group">
                   <HelpCircle className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span>Support</span>
                 </Link>
@@ -73,7 +75,6 @@ export default function NewClaimPage() {
                 </div>
                 <span className="text-netcare-white font-semibold">SJagjivan</span>
               </div>
-              <ThemeToggle />
               <Button variant="ghost" size="sm" className="text-netcare-white/80 hover:text-netcare-gold hover:bg-netcare-gold/10 transition-all duration-300">
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
@@ -89,7 +90,7 @@ export default function NewClaimPage() {
         <div className="mb-8">
           <Link 
             href="/dashboard" 
-            className="inline-flex items-center text-netcare-white/70 hover:text-netcare-gold transition-colors group"
+            className="inline-flex items-center text-[#1D3443] hover:text-[#3DA9D1] transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Claims Summary
@@ -98,18 +99,18 @@ export default function NewClaimPage() {
 
         {/* Page Header */}
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-netcare-white mb-4">Start a New Claim</h2>
-          <p className="text-netcare-white/70 text-lg">Select the type of claim you want to submit</p>
+          <h2 className="text-4xl font-bold text-[#1D3443] mb-4">Start a New Claim</h2>
+          <p className="text-[#1D3443]/70 text-lg">Select the type of claim you want to submit</p>
         </div>
 
         {/* Claim Options */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           {/* Upload Option */}
           <Card 
-            className={`netcare-card cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+            className={`bg-white shadow-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
               selectedOption === 'upload' 
-                ? 'border-cyan-400/60 bg-cyan-400/10 shadow-cyan-400/20' 
-                : 'border-netcare-gold/20 hover:border-cyan-400/40'
+                ? 'border-[#3DA9D1] bg-[#3DA9D1]/5 shadow-[#3DA9D1]/20' 
+                : 'border-[#D3B380]/50 hover:border-[#3DA9D1]'
             }`}
             onClick={() => setSelectedOption('upload')}
           >
@@ -117,41 +118,41 @@ export default function NewClaimPage() {
               <div className="flex justify-center mb-6">
                 <div className={`p-6 rounded-2xl transition-all duration-300 ${
                   selectedOption === 'upload' 
-                    ? 'bg-cyan-400/20 shadow-lg' 
-                    : 'bg-netcare-gold/20'
+                    ? 'bg-[#3DA9D1]/10 shadow-lg' 
+                    : 'bg-[#D3B380]/20'
                 }`}>
                   <Upload className={`w-12 h-12 ${
-                    selectedOption === 'upload' ? 'text-cyan-400' : 'text-cyan-400'
+                    selectedOption === 'upload' ? 'text-[#3DA9D1]' : 'text-[#1D3443]'
                   }`} />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold text-netcare-white mb-3">
+              <CardTitle className="text-2xl font-bold text-[#1D3443] mb-3">
                 Submit claim
               </CardTitle>
-              <p className="text-netcare-white/70 text-base leading-relaxed">
+              <p className="text-[#1D3443]/70 text-base leading-relaxed">
                 Upload statement from your account
               </p>
             </CardHeader>
             <CardContent className="pt-0">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-netcare-white/80">
-                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-[#1D3443]">
+                  <CheckCircle className="w-5 h-5 text-[#3DA9D1] flex-shrink-0" />
                   <span className="text-sm">Upload medical aid statements directly</span>
                 </div>
-                <div className="flex items-center gap-3 text-netcare-white/80">
-                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-[#1D3443]">
+                  <CheckCircle className="w-5 h-5 text-[#3DA9D1] flex-shrink-0" />
                   <span className="text-sm">Automatic information extraction</span>
                 </div>
-                <div className="flex items-center gap-3 text-netcare-white/80">
-                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-[#1D3443]">
+                  <CheckCircle className="w-5 h-5 text-[#3DA9D1] flex-shrink-0" />
                   <span className="text-sm">Faster processing time</span>
                 </div>
               </div>
               {selectedOption === 'upload' && (
-                <div className="mt-6 p-4 bg-cyan-400/10 rounded-lg border border-cyan-400/30">
+                <div className="mt-6 p-4 bg-[#3DA9D1]/10 rounded-lg border border-[#3DA9D1]/30">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-cyan-400" />
-                    <span className="text-cyan-300 font-medium">Selected</span>
+                    <CheckCircle className="w-5 h-5 text-[#3DA9D1]" />
+                    <span className="text-[#1D3443] font-medium">Selected</span>
                   </div>
                 </div>
               )}
@@ -160,10 +161,10 @@ export default function NewClaimPage() {
 
           {/* Email Option */}
           <Card 
-            className={`netcare-card cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+            className={`bg-white shadow-lg cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
               selectedOption === 'email' 
-                ? 'border-cyan-400/60 bg-cyan-400/10 shadow-cyan-400/20' 
-                : 'border-netcare-gold/20 hover:border-cyan-400/40'
+                ? 'border-[#3DA9D1] bg-[#3DA9D1]/5 shadow-[#3DA9D1]/20' 
+                : 'border-[#D3B380]/50 hover:border-[#3DA9D1]'
             }`}
             onClick={() => setSelectedOption('email')}
           >
@@ -171,41 +172,41 @@ export default function NewClaimPage() {
               <div className="flex justify-center mb-6">
                 <div className={`p-6 rounded-2xl transition-all duration-300 ${
                   selectedOption === 'email' 
-                    ? 'bg-cyan-400/20 shadow-lg' 
-                    : 'bg-netcare-gold/20'
+                    ? 'bg-[#3DA9D1]/10 shadow-lg' 
+                    : 'bg-[#D3B380]/20'
                 }`}>
                   <Mail className={`w-12 h-12 ${
-                    selectedOption === 'email' ? 'text-cyan-400' : 'text-cyan-400'
+                    selectedOption === 'email' ? 'text-[#3DA9D1]' : 'text-[#1D3443]'
                   }`} />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold text-netcare-white mb-3">
+              <CardTitle className="text-2xl font-bold text-[#1D3443] mb-3">
                 Submit claim via Email
               </CardTitle>
-              <p className="text-netcare-white/70 text-base leading-relaxed">
+              <p className="text-[#1D3443]/70 text-base leading-relaxed">
                 Send your statement to Netcare
               </p>
             </CardHeader>
             <CardContent className="pt-0">
               <div className="space-y-4">
-                <div className="flex items-center gap-3 text-netcare-white/80">
-                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-[#1D3443]">
+                  <CheckCircle className="w-5 h-5 text-[#3DA9D1] flex-shrink-0" />
                   <span className="text-sm">Email your documents directly</span>
                 </div>
-                <div className="flex items-center gap-3 text-netcare-white/80">
-                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-[#1D3443]">
+                  <CheckCircle className="w-5 h-5 text-[#3DA9D1] flex-shrink-0" />
                   <span className="text-sm">Submit from any device</span>
                 </div>
-                <div className="flex items-center gap-3 text-netcare-white/80">
-                  <CheckCircle className="w-5 h-5 text-cyan-400 flex-shrink-0" />
+                <div className="flex items-center gap-3 text-[#1D3443]">
+                  <CheckCircle className="w-5 h-5 text-[#3DA9D1] flex-shrink-0" />
                   <span className="text-sm">Convenient for mobile users</span>
                 </div>
               </div>
               {selectedOption === 'email' && (
-                <div className="mt-6 p-4 bg-cyan-400/10 rounded-lg border border-cyan-400/30">
+                <div className="mt-6 p-4 bg-[#3DA9D1]/10 rounded-lg border border-[#3DA9D1]/30">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="w-5 h-5 text-cyan-400" />
-                    <span className="text-cyan-300 font-medium">Selected</span>
+                    <CheckCircle className="w-5 h-5 text-[#3DA9D1]" />
+                    <span className="text-[#1D3443] font-medium">Selected</span>
                   </div>
                 </div>
               )}
@@ -220,8 +221,8 @@ export default function NewClaimPage() {
             disabled={!selectedOption}
             className={`px-12 py-4 text-lg font-semibold transition-all duration-300 ${
               selectedOption 
-                ? 'netcare-button hover:shadow-2xl hover:scale-105' 
-                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                ? 'bg-[#1D3443] text-white hover:bg-[#1D3443]/90 hover:shadow-2xl hover:scale-105' 
+                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
             Continue With Selected Option
@@ -231,30 +232,30 @@ export default function NewClaimPage() {
 
         {/* Help Section */}
         <div className="mt-16">
-          <Card className="netcare-card border-netcare-gold/30">
+          <Card className="bg-white shadow-lg border border-[#D3B380]/50">
             <CardContent className="p-8 text-center">
               <div className="flex justify-center mb-4">
-                <div className="p-3 bg-netcare-gold/20 rounded-xl">
-                  <HelpCircle className="w-8 h-8 text-cyan-400" />
+                <div className="p-3 bg-[#D3B380]/20 rounded-xl">
+                  <HelpCircle className="w-8 h-8 text-[#3DA9D1]" />
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-netcare-white mb-3">Need Help?</h3>
-              <p className="text-netcare-white/70 mb-6 max-w-2xl mx-auto">
+              <h3 className="text-xl font-bold text-[#1D3443] mb-3">Need Help?</h3>
+              <p className="text-[#1D3443]/70 mb-6 max-w-2xl mx-auto">
                 If you're unsure which option to choose or need assistance with your claim submission, 
                 our support team is here to help.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
                   variant="outline" 
-                  className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900"
+                  className="border-[#3DA9D1] text-[#3DA9D1] hover:bg-[#3DA9D1] hover:text-white"
                 >
                   Contact Support
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-netcare-gold text-netcare-gold hover:bg-netcare-gold hover:text-netcare-navy"
+                  className="border-[#D3B380] text-[#1D3443] hover:bg-[#D3B380] hover:text-[#1D3443]"
                 >
-                  View Help Guide
+                  View FAQ
                 </Button>
               </div>
             </CardContent>
@@ -263,14 +264,14 @@ export default function NewClaimPage() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-netcare-navy/50 border-t border-netcare-gold/20 py-8 mt-16">
+      <footer className="bg-netcare-navy/95 backdrop-blur-md border-t border-netcare-gold/30 shadow-xl py-8 mt-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-netcare-white/60 text-sm">
               © 2025 ClaimsPro. All rights reserved.
             </p>
             <div className="flex flex-wrap gap-6 text-netcare-white/60">
-              <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Support</Link>
+              <Link href="/support" className="hover:text-netcare-gold transition-colors text-sm">Support</Link>
               <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Privacy Policy</Link>
               <Link href="#" className="hover:text-netcare-gold transition-colors text-sm">Terms of Service</Link>
             </div>

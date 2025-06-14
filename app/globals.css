@@ -3,34 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 15, 32, 39;
-  --background-end-rgb: 125, 211, 252;
+  --foreground-rgb: 29, 52, 67;
+  --background-start-rgb: 208, 233, 243;
+  --background-end-rgb: 208, 233, 243;
 }
 
 @layer base {
   :root {
-    --background: 240 100% 99%;
-    --foreground: 210 40% 15%;
+    --background: 200 30% 88%;
+    --foreground: 206 39% 19%;
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 15%;
+    --card-foreground: 206 39% 19%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 15%;
-    --primary: 188 95% 52%;
+    --popover-foreground: 206 39% 19%;
+    --primary: 206 39% 19%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 188 25% 95%;
-    --secondary-foreground: 210 40% 15%;
-    --muted: 188 25% 95%;
+    --secondary: 200 30% 88%;
+    --secondary-foreground: 206 39% 19%;
+    --muted: 200 30% 88%;
     --muted-foreground: 215 16% 47%;
-    --accent: 188 95% 52%;
+    --accent: 206 39% 19%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 188 30% 85%;
-    --input: 188 30% 90%;
-    --ring: 188 95% 52%;
-    --chart-1: 188 95% 52%;
-    --chart-2: 188 85% 45%;
+    --border: 200 30% 88%;
+    --input: 200 30% 88%;
+    --ring: 206 39% 19%;
+    --chart-1: 206 39% 19%;
+    --chart-2: 206 39% 29%;
     --chart-3: 43 96% 56%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
@@ -44,15 +44,8 @@
   }
   body {
     @apply min-h-screen;
-    background:
-      radial-gradient(circle 400px at 20% 80%, rgba(34, 238, 204, 0.3) 0%, transparent 70%),
-      radial-gradient(circle 350px at 80% 20%, rgba(125, 233, 252, 0.25) 0%, transparent 70%),
-      radial-gradient(circle 500px at 50% 50%, rgba(34, 211, 238, 0.2) 0%, transparent 80%),
-      radial-gradient(circle 300px at 90% 70%, rgba(165, 243, 252, 0.15) 0%, transparent 70%),
-      radial-gradient(circle 450px at 10% 30%, rgba(34, 190, 238, 0.25) 0%, transparent 75%),
-      radial-gradient(circle 250px at 60% 10%, rgba(125, 211, 252, 0.18) 0%, transparent 65%),
-      linear-gradient(135deg, #0F2027 0%, #203A43 30%, #2C5364 60%, #07424d 85%, #397c8d 100%);
-    color: #FFFFFF; /* Default to white text for dark gradient background */
+    background: #D0E9F3;
+    color: #1D3443;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: 'Inter', 'Open Sans', Arial, sans-serif;
   }

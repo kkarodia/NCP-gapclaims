@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import Image from 'next/image';
 
 interface AttachedFile {
   id: string;
@@ -125,18 +125,20 @@ Best regards,
   const canSend = email && subject && body && attachedFiles.length > 0;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-[#D0E9F3] to-[#B0D3E0]">
       {/* Header */}
       <header className="bg-netcare-navy/95 backdrop-blur-md border-b border-netcare-gold/30 shadow-xl">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-netcare-gold to-netcare-light-gold rounded-xl flex items-center justify-center shadow-lg">
-                  <div className="w-7 h-7 bg-netcare-navy rounded-lg flex items-center justify-center">
-                    <div className="w-3 h-3 bg-netcare-gold rounded-sm"></div>
-                  </div>
-                </div>
+                <Image
+                  src="/assets/images/netcarelogo.png"
+                  alt="Netcare Logo"
+                  width={64}
+                  height={64}
+                  className="object-contain"
+                />
                 <div>
                   <h1 className="text-2xl font-bold text-netcare-white tracking-tight">NETCARE</h1>
                   <p className="text-sm text-netcare-gold font-medium">plus</p>
@@ -166,7 +168,6 @@ Best regards,
                 </div>
                 <span className="text-netcare-white font-semibold">SJagjivan</span>
               </div>
-              <ThemeToggle />
               <Button variant="ghost" size="sm" className="text-netcare-white/80 hover:text-netcare-gold hover:bg-netcare-gold/10 transition-all duration-300">
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
@@ -182,7 +183,7 @@ Best regards,
         <div className="mb-8">
           <Link 
             href="/new-claim" 
-            className="inline-flex items-center text-netcare-white/70 hover:text-netcare-gold transition-colors group"
+            className="inline-flex items-center text-[#1D3443] hover:text-[#3DA9D1] transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             Back to Claim Types
@@ -192,12 +193,12 @@ Best regards,
         {/* Page Header */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-4">
-            <div className="p-3 bg-cyan-400/20 rounded-xl">
-              <Mail className="w-8 h-8 text-cyan-400" />
+            <div className="p-3 bg-[#3DA9D1]/20 rounded-xl">
+              <Mail className="w-8 h-8 text-[#3DA9D1]" />
             </div>
             <div>
-              <h2 className="text-4xl font-bold text-netcare-white">Submit Claim via Email</h2>
-              <p className="text-netcare-white/70 text-lg">
+              <h2 className="text-4xl font-bold text-[#1D3443]">Submit Claim via Email</h2>
+              <p className="text-[#1D3443]/70 text-lg">
                 Compose your email and attach your medical documents
               </p>
             </div>
@@ -207,21 +208,21 @@ Best regards,
         {/* Email Composition */}
         <div className="space-y-8">
           {/* Recipient Information */}
-          <Card className="netcare-card border-cyan-400/30 bg-cyan-400/5">
+          <Card className="bg-white border-[#D3B380]/30 shadow-lg">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-netcare-white mb-2">Send your claim to:</h3>
+                  <h3 className="text-lg font-semibold text-[#1D3443] mb-2">Send your claim to:</h3>
                   <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-cyan-400" />
-                    <span className="text-cyan-400 font-mono text-lg">{netcareEmail}</span>
+                    <Mail className="w-5 h-5 text-[#3DA9D1]" />
+                    <span className="text-[#3DA9D1] font-mono text-lg">{netcareEmail}</span>
                   </div>
                 </div>
                 <Button
                   onClick={copyEmailToClipboard}
                   variant="outline"
                   size="sm"
-                  className="border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900"
+                  className="border-[#D3B380] text-[#1D3443] hover:bg-[#D3B380]/10 hover:border-[#D3B380]"
                 >
                   {emailCopied ? (
                     <>
@@ -240,55 +241,52 @@ Best regards,
           </Card>
 
           {/* Email Form */}
-          <Card className="netcare-card border-netcare-gold/30">
+          <Card className="bg-white border-[#D3B380]/30 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-netcare-white text-xl">Compose Email</CardTitle>
+              <CardTitle className="text-[#1D3443] text-xl">Compose Email</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Your Email */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-netcare-white/80 font-medium">
-                  Your Email:
+                <Label htmlFor="email" className="text-[#1D3443] font-medium">
+                  Your Email
                 </Label>
                 <Input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="your.email@example.com"
-                  className="netcare-input h-12"
-                  required
+                  placeholder="Enter your email address"
+                  className="bg-[#F8FBFD] border-[#D3B380]/30 text-[#1D3443] placeholder:text-[#1D3443]/40"
                 />
               </div>
 
               {/* Subject */}
               <div className="space-y-2">
-                <Label htmlFor="subject" className="text-netcare-white/80 font-medium">
-                  Subject:
+                <Label htmlFor="subject" className="text-[#1D3443] font-medium">
+                  Subject
                 </Label>
                 <Input
                   id="subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  placeholder="Medical Claim Submission - [Your Name]"
-                  className="netcare-input h-12"
-                  required
+                  placeholder="Enter email subject"
+                  className="bg-[#F8FBFD] border-[#D3B380]/30 text-[#1D3443] placeholder:text-[#1D3443]/40"
                 />
               </div>
 
-              {/* Body */}
+              {/* Message Body */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="body" className="text-netcare-white/80 font-medium">
-                    Body:
+                  <Label htmlFor="body" className="text-[#1D3443] font-medium">
+                    Message
                   </Label>
                   <Button
                     onClick={handleIncludeTemplate}
-                    variant="ghost"
+                    variant="outline"
                     size="sm"
-                    className="text-cyan-400 hover:text-cyan-300 hover:bg-cyan-400/10"
+                    className="border-[#D3B380] text-[#1D3443] hover:bg-[#D3B380]/10 hover:border-[#D3B380]"
                   >
-                    <FileText className="w-4 h-4 mr-2" />
                     Include Template
                   </Button>
                 </div>
@@ -296,151 +294,96 @@ Best regards,
                   id="body"
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
-                  placeholder="Enter your message here..."
-                  className="netcare-input min-h-[200px] resize-none"
-                  required
+                  placeholder="Compose your message"
+                  className="min-h-[200px] bg-[#F8FBFD] border-[#D3B380]/30 text-[#1D3443] placeholder:text-[#1D3443]/40"
                 />
-                <p className="text-netcare-white/50 text-sm">
-                  Example email body here
-                </p>
               </div>
 
               {/* File Attachments */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label className="text-netcare-white/80 font-medium">
-                    Attachments:
+                  <Label className="text-[#1D3443] font-medium">
+                    Attachments
                   </Label>
-                  <Button
-                    onClick={() => fileInputRef.current?.click()}
-                    variant="outline"
-                    size="sm"
-                    className="border-netcare-gold text-netcare-gold hover:bg-netcare-gold hover:text-netcare-navy"
-                  >
-                    <Paperclip className="w-4 h-4 mr-2" />
-                    Attach Files
-                  </Button>
+                  <p className="text-[#1D3443]/60 text-sm">
+                    {attachedFiles.length} file(s) attached
+                  </p>
                 </div>
 
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  multiple
-                  accept=".pdf,.jpg,.jpeg,.png"
-                  onChange={(e) => handleFileUpload(e.target.files)}
-                  className="hidden"
-                />
+                {/* Drag & Drop Zone */}
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="border-2 border-dashed border-[#D3B380]/50 rounded-lg p-8 text-center hover:border-[#D3B380] hover:bg-[#D3B380]/5 transition-colors cursor-pointer"
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    onChange={(e) => handleFileUpload(e.target.files)}
+                    className="hidden"
+                  />
+                  <Paperclip className="w-8 h-8 text-[#3DA9D1] mx-auto mb-4" />
+                  <p className="text-[#1D3443] font-medium mb-2">
+                    Click to upload or drag and drop
+                  </p>
+                  <p className="text-[#1D3443]/60 text-sm">
+                    PDF, JPG, PNG (max. 10MB each)
+                  </p>
+                </div>
 
-                {/* Mock attached file */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-4 bg-white/10 rounded-lg border border-netcare-gold/20">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-red-500/20 rounded-lg">
-                        <File className="w-5 h-5 text-red-400" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-netcare-white">Mock_Medical_Aid_Statement.pdf</p>
-                        <p className="text-sm text-netcare-white/60">2 KB</p>
-                      </div>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="text-netcare-white/60 hover:text-red-400 hover:bg-red-400/10"
-                    >
-                      <X className="w-4 h-4" />
-                    </Button>
-                  </div>
-
-                  {/* Display uploaded files */}
-                  {attachedFiles.map((file) => (
-                    <div
-                      key={file.id}
-                      className="flex items-center justify-between p-4 bg-white/10 rounded-lg border border-netcare-gold/20"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className="p-2 bg-cyan-400/20 rounded-lg">
-                          <File className="w-5 h-5 text-cyan-400" />
-                        </div>
-                        <div>
-                          <p className="font-medium text-netcare-white">{file.name}</p>
-                          <p className="text-sm text-netcare-white/60">{formatFileSize(file.size)}</p>
-                        </div>
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => removeFile(file.id)}
-                        className="text-netcare-white/60 hover:text-red-400 hover:bg-red-400/10"
+                {/* Attached Files List */}
+                {attachedFiles.length > 0 && (
+                  <div className="space-y-3">
+                    {attachedFiles.map((file) => (
+                      <div
+                        key={file.id}
+                        className="flex items-center justify-between p-3 bg-[#F8FBFD] rounded-lg border border-[#D3B380]/30"
                       >
-                        <X className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  ))}
-                </div>
-
-                {attachedFiles.length === 0 && (
-                  <div className="text-center py-8 border-2 border-dashed border-netcare-gold/30 rounded-lg">
-                    <Paperclip className="w-8 h-8 text-netcare-white/40 mx-auto mb-3" />
-                    <p className="text-netcare-white/60">No files attached yet</p>
-                    <p className="text-netcare-white/40 text-sm">Click "Attach Files" to add your documents</p>
+                        <div className="flex items-center gap-3">
+                          <div className="p-2 bg-[#3DA9D1]/20 rounded-lg">
+                            <File className="w-4 h-4 text-[#3DA9D1]" />
+                          </div>
+                          <div>
+                            <p className="text-[#1D3443] font-medium">{file.name}</p>
+                            <p className="text-[#1D3443]/60 text-sm">
+                              {formatFileSize(file.size)}
+                            </p>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeFile(file.id)}
+                          className="text-[#1D3443]/60 hover:text-[#1D3443] hover:bg-[#1D3443]/10"
+                        >
+                          <X className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
-            </CardContent>
-          </Card>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-end">
-            <Button
-              onClick={() => router.push('/new-claim')}
-              variant="outline"
-              className="border-netcare-gold/50 text-netcare-white hover:bg-netcare-gold/10 hover:border-netcare-gold h-12 px-8 text-base font-semibold"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSend}
-              disabled={!canSend || isSending}
-              className={`h-12 px-8 text-base font-semibold transition-all duration-300 ${
-                canSend && !isSending
-                  ? 'netcare-button hover:shadow-2xl hover:scale-105'
-                  : 'bg-gray-600 text-gray-400 cursor-not-allowed'
-              }`}
-            >
-              {isSending ? (
-                <div className="flex items-center space-x-2">
-                  <div className="w-4 h-4 border-2 border-netcare-navy border-t-transparent rounded-full animate-spin"></div>
-                  <span>Sending...</span>
+              {/* Send Button */}
+              <div className="flex items-center justify-between pt-4">
+                <div className="flex items-center gap-2 text-[#1D3443]/60">
+                  <Info className="w-4 h-4" />
+                  <p className="text-sm">All fields are required</p>
                 </div>
-              ) : (
-                <>
-                  <Send className="w-5 h-5 mr-2" />
-                  Send
-                </>
-              )}
-            </Button>
-          </div>
-
-          {/* Help Information */}
-          <Card className="netcare-card border-cyan-400/30 bg-cyan-400/5">
-            <CardContent className="p-6">
-              <div className="flex items-start gap-4">
-                <div className="p-2 bg-cyan-400/20 rounded-lg flex-shrink-0">
-                  <Info className="w-5 h-5 text-cyan-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-cyan-300 mb-2">
-                    Email Submission Tips
-                  </h3>
-                  <ul className="text-cyan-200/80 space-y-2 text-sm">
-                    <li>• Include all relevant medical documents as attachments</li>
-                    <li>• Use a clear subject line with your name or policy number</li>
-                    <li>• Provide your contact information in the email body</li>
-                    <li>• Supported file formats: PDF, JPG, PNG (max 5MB each)</li>
-                    <li>• You'll receive a confirmation email once your claim is received</li>
-                  </ul>
-                </div>
+                <Button
+                  onClick={handleSend}
+                  disabled={!canSend || isSending}
+                  className="bg-[#1D3443] text-white hover:bg-[#1D3443]/90 min-w-[120px]"
+                >
+                  {isSending ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4 mr-2" />
+                      Send
+                    </>
+                  )}
+                </Button>
               </div>
             </CardContent>
           </Card>
@@ -448,7 +391,7 @@ Best regards,
       </div>
 
       {/* Footer */}
-      <footer className="bg-netcare-navy/50 border-t border-netcare-gold/20 py-8 mt-16">
+      <footer className="bg-netcare-navy/95 backdrop-blur-md border-t border-netcare-gold/30 shadow-xl py-8 mt-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-netcare-white/60 text-sm">
